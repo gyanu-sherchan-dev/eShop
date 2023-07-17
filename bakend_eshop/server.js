@@ -1,10 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 import products from "./data/Products.js";
+import mongoConnect from "./config/db.js";
 const port = process.env.PORT || 5000;
 
+mongoConnect(); //MongoDB connection
+
 const app = express();
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("API is running...");
