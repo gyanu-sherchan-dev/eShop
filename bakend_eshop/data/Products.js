@@ -1,6 +1,5 @@
 const Products = [
   {
-    _id: "1",
     name: "Airpod wireless bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -13,7 +12,6 @@ const Products = [
     numReviews: 12,
   },
   {
-    _id: "2",
     name: "Iphone 11 pro",
     image: "/images/phone.jpg",
     description:
@@ -26,7 +24,6 @@ const Products = [
     numReviews: 12,
   },
   {
-    _id: "3",
     name: "Cannon E8 Camera",
     image: "/images/camera.jpg",
     description:
@@ -39,7 +36,6 @@ const Products = [
     numReviews: 12,
   },
   {
-    _id: "4",
     name: "Google Assist Alex",
     image: "/images/alexa.jpg",
     description:
@@ -52,7 +48,6 @@ const Products = [
     numReviews: 12,
   },
   {
-    _id: "5",
     name: "Smart Play Station V2",
     image: "/images/playstation.jpg",
     description:
@@ -65,7 +60,6 @@ const Products = [
     numReviews: 12,
   },
   {
-    _id: "6",
     name: "Apple mouse",
     image: "/images/mouse.jpg",
     description:
