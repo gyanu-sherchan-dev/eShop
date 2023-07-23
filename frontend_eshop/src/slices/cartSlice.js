@@ -1,14 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 //in other slice before we use create API because that was the slice where we have endPoints that are dealing with asynchronous requests, but we are not doing that with cart, so we do not need to use create API, we can simply use create slice function
+import { updateCart } from "../utils/cartUtils";
 
 //our items are going to store in local storage, so that when we leave the site, we come back, our items are still in the cart, so we want to check that localstorage item first.
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : { cartItems: [] };
-
-const addDecimals = (num) => {
-  return (Math.round(num * 100) / 100).toFixed(2);
-};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -25,24 +22,7 @@ const cartSlice = createSlice({
       } else {
         state.cartItems = [...state.cartItems, item];
       }
-
-      //calculate items price
-      state.itemsPrice = addDecimals(
-        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-      );
-      //calculate shipping price (if order is over $100 then free, else $10 shipping )
-      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
-      //calculate tax price
-      state.taxPrice = addDecimals(
-        Number((0.15 * state.itemsPrice).toFixed(2))
-      );
-      //calculate total price
-      state.totalPrice = (
-        Number(state.itemsPrice) +
-        Number(state.shippingPrice) +
-        Number(state.taxPrice)
-      ).toFixed(2);
-      localStorage.setItem("cart", JSON.stringify(state));
+      return updateCart(state);
     },
   },
   //in this reducer object we will have any funtions that have to do with the cart, so when we add to cart, remove etc..
