@@ -24,10 +24,15 @@ const cartSlice = createSlice({
       }
       return updateCart(state);
     },
+
+    removeFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+      return updateCart(state);
+    },
   },
   //in this reducer object we will have any funtions that have to do with the cart, so when we add to cart, remove etc..
   //anything we create in reducers such as add to cart, remove from cart, save shipping address, need to export those as actions, but we also want to export the reducers altogether and bring into our store file
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
