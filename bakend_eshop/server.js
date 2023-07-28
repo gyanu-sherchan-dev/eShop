@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import productRoute from "./routes/productRoute.js";
+import userRoute from "./routes/userRoute.js";
 const port = process.env.PORT || 5000;
 
 connectDB(); //MongoDB connection
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 
 //product route connection
 app.use("/api/products", productRoute);
+//user route connection
+app.use("/api/users", userRoute);
 
 app.use(notFound);
 app.use(errorHandler);
