@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,11 +19,15 @@ const userSchema = new mongoose.Schema(
     isAdmin: {
       type: Boolean,
       required: true,
-      default: false, //so inorder ot make an admin, we have to go into database and change that to true.
+      default: false, //so inorder to make an admin, we have to go into database and change that to true.
     },
   },
   { timestamps: true }
 );
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 export default User;
